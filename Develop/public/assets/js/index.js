@@ -1,3 +1,17 @@
+//Dependencies
+//=========================================================================
+const express = require('express');
+const path = require('path');
+
+const app = express();
+const PORT = 3001;
+
+//handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+//Notes Variables and Methods
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
@@ -57,8 +71,10 @@ const renderActiveNote = () => {
     noteTitle.setAttribute('readonly', true);
     noteText.setAttribute('readonly', true);
     noteTitle.value = activeNote.title;
-    noteText.value = activeNote.title;
+    noteText.value = activeNote.text;
   } else {
+    noteTitle.setAttribute('readonly', false);
+    noteText.setAttribute('readonly', false);
     noteTitle.value = '';
     noteText.value = '';
   }
@@ -178,3 +194,25 @@ if (window.location.pathname === '/notes') {
 }
 
 getAndRenderNotes();
+
+//Routes
+// ====================================================================
+// route for index.html
+app.get('/', (req,res) => {
+  return res.sendFile(path.join(__dirname, 'index.html'))
+});
+
+// `/notes` route that returns `notes.html`
+app.get('/notes', (req, res) => {
+  return res.sendFile(path.join(__dirname, 'notes.html'));
+})
+
+app.get('/api/notes', (req, res) => {
+  return res.json(notes);
+});
+
+/* app.get('/api/notes/:note', (req, res) => {
+  const chosen = req.params.note;
+
+  console.log(chosen);
+}) */
