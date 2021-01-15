@@ -198,7 +198,7 @@ getAndRenderNotes();
 
 //Routes
 // ====================================================================
-// route for index.html
+// GET
 app.get('/', (req,res) => {
   return res.sendFile(path.join(__dirname, 'index.html'))
 });
@@ -212,12 +212,30 @@ app.get('/api/notes', (req, res) => {
   return res.json(notes);
 });
 
-/* app.get('/api/notes/:note', (req, res) => {
+ app.get('/api/notes/:note', (req, res) => {
   const chosen = req.params.note;
 
   console.log(chosen);
-}) */
 
+  for (let i = 0; i < notes.length; i++) {
+    if (chosen === notes[i].id) {
+      return res.json(notes[i]);
+    }
+  }
+
+  return res.json(false);
+});
+
+//POST
+app.post('/api/notes', (req,res) => {
+  const newNote = req.body;
+
+  notes.push(newNote);
+  res.json(newNote);
+});
+
+//Listener
+//======================================================
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
 });
