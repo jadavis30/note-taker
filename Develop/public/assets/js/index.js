@@ -1,16 +1,3 @@
-//Dependencies
-//=========================================================================
-const express = require('express');
-const path = require('path');
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-
-//handle data parsing
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-
 //Notes Variables and Methods
 
 let noteTitle;
@@ -52,10 +39,12 @@ const saveNote = (note) =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
+      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(note),
-  });
+  })
+  ;
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -187,7 +176,7 @@ const renderNoteList = async (notes) => {
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === '/notes') {
+if (window.location.pathname === 'public/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
@@ -196,46 +185,3 @@ if (window.location.pathname === '/notes') {
 
 getAndRenderNotes();
 
-//Routes
-// ====================================================================
-// GET
-app.get('/', (req,res) => {
-  return res.sendFile(path.join(__dirname, 'index.html'))
-});
-
-// `/notes` route that returns `notes.html`
-app.get('/notes', (req, res) => {
-  return res.sendFile(path.join(__dirname, 'notes.html'));
-})
-
-app.get('/api/notes', (req, res) => {
-  return res.json(notes);
-});
-
- app.get('/api/notes/:note', (req, res) => {
-  const chosen = req.params.note;
-
-  console.log(chosen);
-
-  for (let i = 0; i < notes.length; i++) {
-    if (chosen === notes[i].id) {
-      return res.json(notes[i]);
-    }
-  }
-
-  return res.json(false);
-});
-
-//POST
-app.post('/api/notes', (req,res) => {
-  const newNote = req.body;
-
-  notes.push(newNote);
-  res.json(newNote);
-});
-
-//Listener
-//======================================================
-app.listen(PORT, () => {
-  console.log(`API server now on port ${PORT}!`);
-});
