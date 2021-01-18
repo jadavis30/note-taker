@@ -1,1 +1,15 @@
-[{"title":"Test Title","text":"Test text"}]
+{
+  "notesArray": [
+    {
+      "id": "0",
+      "title": "Test Title",
+      "text": "Test text"
+    },
+    {
+      "id": "1"
+    },
+    {
+      "id": "2"
+    }
+  ]
+}

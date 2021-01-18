@@ -25,26 +25,24 @@ const hide = (elem) => {
 };
 
 // activeNote is used to keep track of the note in the textarea
-let activeNote = {};
+let activeNote = { };
 
 const getNotes = () =>
   fetch('/api/notes', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
-    },
+    }
   });
 
-const saveNote = (note) =>
+const saveNote = () =>
   fetch('/api/notes', {
     method: 'POST',
     headers: {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
-  })
-  ;
+    body: JSON.stringify(),
+  });
 
 const deleteNote = (id) =>
   fetch(`/api/notes/${id}`, {
@@ -176,7 +174,7 @@ const renderNoteList = async (notes) => {
 // Gets notes from the db and renders them to the sidebar
 const getAndRenderNotes = () => getNotes().then(renderNoteList);
 
-if (window.location.pathname === 'public/notes') {
+if (window.location.pathname === '/notes') {
   saveNoteBtn.addEventListener('click', handleNoteSave);
   newNoteBtn.addEventListener('click', handleNewNoteView);
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
@@ -184,4 +182,3 @@ if (window.location.pathname === 'public/notes') {
 }
 
 getAndRenderNotes();
-
