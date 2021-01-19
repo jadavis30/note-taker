@@ -1,5 +1,4 @@
 //Notes Variables and Methods
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
