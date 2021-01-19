@@ -61,8 +61,6 @@ const renderActiveNote = () => {
     noteTitle.value = activeNote.title;
     noteText.value = activeNote.text;
   } else {
-    noteTitle.setAttribute('readonly', false);
-    noteText.setAttribute('readonly', false);
     noteTitle.value = '';
     noteText.value = '';
   }
@@ -180,5 +178,4 @@ if (window.location.pathname === '/notes') {
   noteTitle.addEventListener('keyup', handleRenderSaveBtn);
   noteText.addEventListener('keyup', handleRenderSaveBtn);
 }
-
 getAndRenderNotes();
