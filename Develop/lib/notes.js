@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-//DELETE a note
-function findById(id, notesArray) {
-    const result = notesArray.filter(note => note.id === id)[0];
+
+//filtering for note by id
+function findById(id, notes) {
+    const result = notes.filter(note => note.id === id)[0];
     return result;
   }
 
@@ -16,10 +17,11 @@ function createNewNote (body, notes) {
         JSON.stringify({ notes }, null, 2)
     );
     return note;
-} 
+}
 
-  module.exports = {
-      findById,
-      createNewNote
+
+  module.exports = {  
+    findById,
+    createNewNote
 
   };
