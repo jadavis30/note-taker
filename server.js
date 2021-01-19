@@ -17,6 +17,6 @@ app.use('/', htmlRoutes);
   
 //Listener
 //======================================================
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
 console.log(`API server now on port ${PORT}!`);
 });
