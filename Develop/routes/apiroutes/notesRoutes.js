@@ -21,8 +21,7 @@ router.get('/notes/:id', (req, res) => {
 });
 
 router.delete('/notes/:id', function(req,res) {
-  notes.splice(0, 2);
-  notes.push(req.body);
+  notes.splice(req.params.id, 2);
   res.json(notes);
 });
 

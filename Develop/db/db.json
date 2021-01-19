@@ -1,35 +1,14 @@
 {
   "notes": [
     {
-      "id": "0",
-      "title": "Test Title",
-      "text": "Test text"
+      "title": "Let's make a few",
+      "text": "notes.",
+      "id": "0"
     },
     {
+      "title": "Let's make a few",
+      "text": "notes.",
       "id": "1"
-    },
-    {
-      "id": "2"
-    },
-    {
-      "title": "Jared",
-      "text": "Davis",
-      "id": "3"
-    },
-    {
-      "title": "undefined",
-      "text": "undefined",
-      "id": "4"
-    },
-    {
-      "title": "Jared",
-      "text": "Davis",
-      "id": "5"
-    },
-    {
-      "title": "Hello",
-      "text": "World!",
-      "id": "6"
     }
   ]
 }

@@ -22,6 +22,7 @@ function createNewNote (body, notes) {
 
   module.exports = {  
     findById,
-    createNewNote
+    createNewNote,
+
 
   };
